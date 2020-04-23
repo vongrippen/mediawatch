@@ -1,0 +1,5 @@
+dirs:
+    - path: /zmedia/plex/tv
+      content_type: tv
+    - path: /zmedia/plex/movies
+      content_type: movie
