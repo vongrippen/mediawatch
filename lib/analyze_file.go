@@ -3,7 +3,6 @@ package lib
 import (
 	"log"
 	"os"
-	"path/filepath"
 	"time"
 
 	"github.com/gobuffalo/nulls"
@@ -13,15 +12,14 @@ import (
 
 // AnalyzeFile - Analyze a file with ffprobe and return a MediaFile
 func AnalyzeFile(path string, file os.FileInfo) models.MediaFile {
-	fullpath := filepath.Join(path, file.Name())
 	timeout := 60 * time.Second
 
-	data, err := ff.GetProbeData(fullpath, timeout)
+	data, err := ff.GetProbeData(path, timeout)
 	media := models.MediaFile{}
 	if err != nil {
-		log.Printf("Error getting data (%v): %v", fullpath, err)
+		log.Printf("Error getting data (%v): %v", path, err)
 	} else {
-		log.Printf("Analyzing %v", fullpath)
+		log.Printf("Analyzing %v", path)
 		videoStream := data.GetFirstVideoStream()
 		audioStream := data.GetFirstAudioStream()
 		var videoCodec string

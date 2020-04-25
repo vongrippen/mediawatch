@@ -18,7 +18,7 @@ type WatchDir struct {
 }
 
 // GetWatchDirs - Get the directories to watch
-func GetWatchDirs() Config {
+func GetWatchDirs() []WatchDir {
 	cfgPath := "./watch.yml"
 	err := validateConfigPath(cfgPath)
 	if err != nil {
@@ -29,7 +29,7 @@ func GetWatchDirs() Config {
 		log.Fatal(err)
 	}
 
-	return *cfg
+	return cfg.Dirs
 }
 
 // NewConfig returns a new decoded Config struct

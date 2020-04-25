@@ -1,5 +1,19 @@
 dirs:
     - path: /zmedia/plex/tv
       content_type: tv
+    - path: /zmedia/plex/nzb/tv
+      content_type: tv
+    - path: /zmedia/plex/playon/tv
+      content_type: tv
+    - path: /zmedia/plex/old/TV Shows
+      content_type: tv
+    - path: /zmedia/plex/private-tv
+      content_type: tv
     - path: /zmedia/plex/movies
+      content_type: movie
+    - path: /zmedia/plex/nzb/movies
+      content_type: movie
+    - path: /zmedia/plex/playon/movies
+      content_type: movie
+    - path: /zmedia/plex/old/Movies
       content_type: movie
