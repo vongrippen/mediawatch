@@ -1,13 +1,16 @@
 package grifts
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"path/filepath"
 	"strings"
+	"sync"
 
 	"github.com/gobuffalo/nulls"
 	"github.com/markbates/grift/grift"
+	"github.com/panjf2000/ants/v2"
 	"github.com/vongrippen/mediawatch/lib"
 	"github.com/vongrippen/mediawatch/models"
 )
@@ -17,26 +20,29 @@ var _ = grift.Namespace("plex", func() {
 	grift.Desc("scan", "Scan Plex directories")
 	grift.Add("scan", func(c *grift.Context) error {
 		watchDirs := lib.GetWatchDirs()
+		poolSize := 5
 
-		countWatchDirs := len(watchDirs)
-		finishChan := make(chan int)
-		finished := 0
+		var wg sync.WaitGroup
 
-		for i, watchDir := range watchDirs {
-			go watchThisDir(watchDir, finishChan)
-			log.Printf("Started Thread #%v\n", i)
+		p, _ := ants.NewPoolWithFunc(poolSize, func(i interface{}) {
+			scanThisDir(i.(lib.WatchDir))
+			wg.Done()
+		})
+		defer p.Release()
+
+		for _, watchDir := range watchDirs {
+			wg.Add(1)
+			_ = p.Invoke(watchDir)
 		}
 
-		for finished < countWatchDirs {
-			_ = <-finishChan
-			finished++
-		}
+		wg.Wait()
+		fmt.Printf("running goroutines: %d\n", p.Running())
 
 		return nil
 	})
 })
 
-func watchThisDir(watchDir lib.WatchDir, finished chan int) {
+func scanThisDir(watchDir lib.WatchDir) {
 	err := filepath.Walk(watchDir.Path, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
 			return err
@@ -67,5 +73,4 @@ func watchThisDir(watchDir lib.WatchDir, finished chan int) {
 	if err != nil {
 		log.Println(err)
 	}
-	finished <- 1
 }

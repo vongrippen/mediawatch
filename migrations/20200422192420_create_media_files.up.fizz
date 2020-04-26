@@ -12,6 +12,7 @@ create_table("media_files") {
 	t.Column("height", "integer")
 	t.Column("show", "string")
 	t.Column("season", "string")
+	t.Column("bytes_per_second", "float")
 	t.Timestamps()
 }
 add_index("media_files", "size")
@@ -24,3 +25,4 @@ add_index("media_files", "width")
 add_index("media_files", "height")
 add_index("media_files", "show")
 add_index("media_files", "season")
+add_index("media_files", "bytes_per_second")

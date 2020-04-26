@@ -45,6 +45,7 @@ func AnalyzeFile(path string, file os.FileInfo) models.MediaFile {
 			Width:      nulls.NewInt(width),
 			Height:     nulls.NewInt(height),
 		}
+		media.BytesPerSecond = nulls.NewFloat64(float64(media.Size.Int64) / media.Duration.Float64)
 	}
 
 	return media

@@ -12,21 +12,22 @@ import (
 
 // MediaFile is used by pop to map your media_files database table to your go code.
 type MediaFile struct {
-	ID          uuid.UUID     `json:"id" db:"id"`
-	CreatedAt   time.Time     `json:"created_at" db:"created_at"`
-	UpdatedAt   time.Time     `json:"updated_at" db:"updated_at"`
-	Size        nulls.Int64   `json:"size" db:"size" csv:"size"`
-	Pathname    string        `json:"pathname" db:"pathname" csv:"pathname"`
-	Filename    string        `json:"filename" db:"filename" csv:"filename"`
-	ContentType nulls.String  `json:"content_type" db:"content_type" csv:"content_type"`
-	VideoCodec  nulls.String  `json:"video_codec" db:"video_codec" csv:"video_codec"`
-	AudioCodec  nulls.String  `json:"audio_codec" db:"audio_codec" csv:"audio_codec"`
-	Duration    nulls.Float64 `json:"duration_seconds" db:"duration_seconds" csv:"duration_seconds"`
-	Format      nulls.String  `json:"container_format" db:"container_format" csv:"container_format"`
-	Width       nulls.Int     `json:"width" db:"width" csv:"width"`
-	Height      nulls.Int     `json:"height" db:"height" csv:"height"`
-	Show        nulls.String  `json:"show" db:"show" csv:"show"`
-	Season      nulls.String  `json:"season" db:"season" csv:"season"`
+	ID             uuid.UUID     `json:"id" db:"id"`
+	CreatedAt      time.Time     `json:"created_at" db:"created_at"`
+	UpdatedAt      time.Time     `json:"updated_at" db:"updated_at"`
+	Size           nulls.Int64   `json:"size" db:"size" csv:"size"`
+	Pathname       string        `json:"pathname" db:"pathname" csv:"pathname"`
+	Filename       string        `json:"filename" db:"filename" csv:"filename"`
+	ContentType    nulls.String  `json:"content_type" db:"content_type" csv:"content_type"`
+	VideoCodec     nulls.String  `json:"video_codec" db:"video_codec" csv:"video_codec"`
+	AudioCodec     nulls.String  `json:"audio_codec" db:"audio_codec" csv:"audio_codec"`
+	Duration       nulls.Float64 `json:"duration_seconds" db:"duration_seconds" csv:"duration_seconds"`
+	Format         nulls.String  `json:"container_format" db:"container_format" csv:"container_format"`
+	Width          nulls.Int     `json:"width" db:"width" csv:"width"`
+	Height         nulls.Int     `json:"height" db:"height" csv:"height"`
+	Show           nulls.String  `json:"show" db:"show" csv:"show"`
+	Season         nulls.String  `json:"season" db:"season" csv:"season"`
+	BytesPerSecond nulls.Float64 `json:"bytes_per_second" db:"bytes_per_second" csv:"bytes_per_second"`
 }
 
 // String is not required by pop and may be deleted

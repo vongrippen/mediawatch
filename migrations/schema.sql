@@ -38,6 +38,7 @@ CREATE TABLE public.media_files (
     height integer NOT NULL,
     show character varying(255) NOT NULL,
     season character varying(255) NOT NULL,
+    bytes_per_second numeric NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -69,6 +70,13 @@ ALTER TABLE ONLY public.media_files
 --
 
 CREATE INDEX media_files_audio_codec_idx ON public.media_files USING btree (audio_codec);
+
+
+--
+-- Name: media_files_bytes_per_second_idx; Type: INDEX; Schema: public; Owner: gomediawatch
+--
+
+CREATE INDEX media_files_bytes_per_second_idx ON public.media_files USING btree (bytes_per_second);
 
 
 --

@@ -18,6 +18,7 @@ require (
 	github.com/gobuffalo/x v0.0.0-20190224155809-6bb134105960
 	github.com/gofrs/uuid v3.2.0+incompatible
 	github.com/markbates/grift v1.5.0
+	github.com/panjf2000/ants/v2 v2.3.1
 	github.com/rs/cors v1.7.0
 	github.com/unrolled/secure v0.0.0-20190103195806-76e6d4e9b90c
 	github.com/vansante/go-ffprobe v1.1.0
